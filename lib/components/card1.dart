@@ -15,7 +15,7 @@ class Card1 extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/magazine_pics/mag1.png'),
+             image: AssetImage('assets/magazine_pics/mag1.png'),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.circular(35),
