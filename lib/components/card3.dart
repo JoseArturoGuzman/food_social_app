@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:social_food_app/food_themes.dart';
+import 'package:social_food_app/models/explore_recipe.dart';
 
 class Card3 extends StatelessWidget {
-  const Card3({super.key});
+  const Card3({super.key, required this.recipe});
+
+  final ExploreRecipe recipe;
+  List<Widget> createTagChips(){
+    final chips = <Widget>[];
+    recipe.tags.take(6).forEach((element) {
+      final chip = Chip(label: Text(element, style: FoodTheme.darkTextTheme.bodyLarge,),
+        backgroundColor: Colors.black.withOpacity(0.7),
+
+      );
+    chips.add(chip);
+      },
+    );
+    return chips;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +26,7 @@ class Card3 extends StatelessWidget {
         constraints: BoxConstraints.expand(width: 350, height: 400),
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/magazine_pics/card_carrot.png"),
+              image: AssetImage(recipe.backgroundImage),
               fit: BoxFit.cover),
           borderRadius: BorderRadius.circular(35),
         ),
@@ -50,42 +65,8 @@ class Card3 extends StatelessWidget {
                 alignment: WrapAlignment.start,
                 spacing: 12,
                 runSpacing: 12,
-                children: [
-                  Chip(
-                    label: Text('Vegan', style: FoodTheme.darkTextTheme.bodyLarge,),
-                    backgroundColor: Colors.black.withOpacity(0.7),
-    side: BorderSide(
-    color: Colors.transparent
-    ),
-                  ),
-                  Chip(
-                    label: Text('Vegan', style: FoodTheme.darkTextTheme.bodyLarge,),
-                    backgroundColor: Colors.black.withOpacity(0.7),
-                      side: BorderSide(
-                          color: Colors.transparent
-                      ),
-                  ),
-                  Chip(
-                    label: Text('Vegan', style: FoodTheme.darkTextTheme.bodyLarge,),
-                    backgroundColor: Colors.black.withOpacity(0.7),
-                    side: BorderSide(
-                        color: Colors.transparent
-                    ),
-                  ),
-                  Chip(
-                    label: Text('Vegan', style: FoodTheme.darkTextTheme.bodyLarge,),
-                    backgroundColor: Colors.black.withOpacity(0.7),
-                    side: BorderSide(
-                        color: Colors.transparent
-                    ),
-                  ),Chip(
-                    label: Text('Vegan', style: FoodTheme.darkTextTheme.bodyLarge,),
-                    backgroundColor: Colors.black.withOpacity(0.7),
-                    side: BorderSide(
-                        color: Colors.transparent
-                    ),
-                  ),
-                ],
+                children:
+                  createTagChips(),
               ),
             )
           ],

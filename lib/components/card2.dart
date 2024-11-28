@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:social_food_app/components/author_card.dart';
 import 'package:social_food_app/food_themes.dart';
+import 'package:social_food_app/models/explore_recipe.dart';
+
+import '../models/explore_data.dart';
 
 class Card2 extends StatelessWidget {
-  const Card2({super.key});
+  const Card2({super.key, required this.recipe});
+
+  final ExploreRecipe recipe;
 
   @override
   Widget build(BuildContext context) {
@@ -15,29 +20,29 @@ class Card2 extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/magazine_pics/mag2.png'),
+            image: AssetImage(recipe.backgroundImage),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.circular(35),
         ),
         child: Column(
           children: [
-            AuthorCard(authorName: 'Julio Verne',
-              title: "La vuelta al mundo",
-              imageProvider: AssetImage("assets/profile_pics/person_katz.jpeg"),
+            AuthorCard(authorName: recipe.authorName,
+              title: recipe.title,
+              imageProvider: AssetImage(recipe.authorImage),
             ),
             Expanded(child: Stack(
               children: [
                 Positioned(
                   bottom: 16,
                     right: 16,
-                    child: Text("Recipe", style: FoodTheme.lightTextTheme.displayLarge,)),
+                    child: Text(recipe.title, style: FoodTheme.lightTextTheme.displayLarge,)),
                 Positioned(
                   bottom: 70,
                     left: 16,
                     child: RotatedBox(
                         quarterTurns: 1,
-                        child: Text("Smoth", style: FoodTheme.lightTextTheme.displayLarge,)))
+                        child: Text(recipe.subtitle, style: FoodTheme.lightTextTheme.displayLarge,)))
               ],
             ))
           ],
